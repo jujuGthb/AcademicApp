@@ -1,0 +1,35 @@
+.jury-sidebar {
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+.jury-sidebar .sidebar-header {
+  border-bottom-color: #34495e;
+}
+
+.jury-sidebar .sidebar-header h3 {
+  color: #3498db;
+}
+
+.jury-sidebar .user-name {
+  color: #fff;
+}
+
+.jury-sidebar .user-title {
+  color: #bdc3c7;
+  font-size: 0.875rem;
+}
+
+.jury-sidebar .sidebar-link {
+  color: #ecf0f1;
+}
+
+.jury-sidebar .sidebar-link:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.jury-sidebar .sidebar-link.active {
+  background-color: #3498db;
+  color: #fff;
+}

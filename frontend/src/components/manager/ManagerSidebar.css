@@ -1,0 +1,35 @@
+.manager-sidebar {
+  background-color: #1a3b5d;
+  color: #fff;
+}
+
+.manager-sidebar .sidebar-header {
+  border-bottom-color: #2c4f7c;
+}
+
+.manager-sidebar .sidebar-header h3 {
+  color: #4dabf7;
+}
+
+.manager-sidebar .user-name {
+  color: #fff;
+}
+
+.manager-sidebar .user-role {
+  color: #adb5bd;
+  font-size: 0.875rem;
+}
+
+.manager-sidebar .sidebar-link {
+  color: #dee2e6;
+}
+
+.manager-sidebar .sidebar-link:hover {
+  background-color: #2c4f7c;
+  color: #fff;
+}
+
+.manager-sidebar .sidebar-link.active {
+  background-color: #4dabf7;
+  color: #fff;
+}

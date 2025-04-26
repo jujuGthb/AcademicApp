@@ -1,0 +1,131 @@
+.job-posting-detail {
+  padding: 2rem 0;
+}
+
+.job-posting-detail h1 {
+  margin-bottom: 2rem;
+  color: #343a40;
+  font-size: 2rem;
+}
+
+.job-posting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-section,
+.description-section,
+.documents-section,
+.application-section {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.info-section h2,
+.description-section h2,
+.documents-section h2,
+.application-section h2 {
+  margin-bottom: 1.5rem;
+  color: #343a40;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.75rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  color: #343a40;
+}
+
+.description-section p {
+  color: #495057;
+  line-height: 1.6;
+}
+
+.documents-list {
+  list-style: none;
+  padding: 0;
+}
+
+.documents-list li {
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.documents-list li.required {
+  border-left: 3px solid #dc3545;
+}
+
+.required-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: #dc3545;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.document-description {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.application-section p {
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+.application-section .note {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 0.875rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #c3e6cb;
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
