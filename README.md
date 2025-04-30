@@ -26,21 +26,21 @@ A comprehensive web application for managing academic job postings, applications
 ### Technology Stack
 
 #### Frontend
-**React.js** - UI library  
-**React Router** - Navigation and routing  
-**Context API** - State management  
-**Axios** - HTTP client  
-**CSS3** - Styling
+   **React.js** - UI library  
+   **React Router** - Navigation and routing  
+   **Context API** - State management  
+   **Axios** - HTTP client  
+   **CSS3** - Styling
 
 
 #### Backend
-**Node.js** - Runtime environment  
-**Express.js** - Web framework  
-**MongoDB** - Database  
-**Mongoose** - ODM for MongoDB  
-**JWT** - Authentication  
-**Bcrypt** - Password hashing  
-**Multer** - File uploads  
+   **Node.js** - Runtime environment  
+   **Express.js** - Web framework  
+   **MongoDB** - Database  
+   **Mongoose** - ODM for MongoDB  
+   **JWT** - Authentication  
+   **Bcrypt** - Password hashing  
+   **Multer** - File uploads  
 
 ### System Architecture
 
@@ -90,5 +90,40 @@ To configure the backend application, create a `.env` file in the backend direct
 
 * `MAX_FILE_SIZE`: The maximum allowed size for uploaded files, specified in bytes (e.g., `5000000` for 5MB).
 * `FILE_UPLOAD_PATH`: The directory where uploaded files will be stored on the server (e.g., `./public/uploads`). Ensure this directory exists and the application has write permissions to it.
+
+### Usage
+**Access the application**
+- Development: [http://localhost:3000](http://localhost:3000)
+
+### User Roles
+he system supports four user roles, each with specific permissions and capabilities:
+
+**Applicant (Default)**
+
+* **Registration and Authentication:** Applicants can register and securely authenticate using their Turkish National Identity Number (TC Kimlik No).
+* **Application Submission:** Enables applicants to fill out and submit the application form.
+* **Document Upload:** Allows applicants to upload necessary supporting documents.
+* **Application Tracking:** Provides applicants with the ability to monitor the real-time status of their submitted applications.
+
+**Jury Member**
+
+* **Assigned Announcement Review:** Jury members can view the announcements they have been assigned to evaluate.
+* **Applicant Document Review:** Permits jury members to access and review the documents submitted by applicants.
+* **Evaluation Submission:** Allows jury members to submit scores and provide comments on the applications they review.
+
+**Manager**
+
+* **Announcement Management:** Managers can create new announcements and edit existing ones.
+* **Rule Definition:** Enables managers to define category weights and establish minimum score requirements for applications.
+* **Jury Assignment:** Allows managers to assign specific jury members to evaluate particular announcements.
+* **Evaluation Oversight:** Provides managers with the ability to review the evaluations submitted by jury members.
+
+**Administrator**
+
+* **Full System Access:** Administrators have unrestricted access to all modules and functionalities within the system.
+* **User and Role Management:** Permits administrators to manage user accounts, assign roles, and control system access levels.
+* **Submission Override and Auditing:** Grants administrators the capability to override submissions if necessary and audit system activities.
+
+### API Documentation
 
 
