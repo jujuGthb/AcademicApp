@@ -205,35 +205,4 @@ This section provides a comprehensive overview of the available API endpoints, o
 
 ### Project Structure
 
-academic-application-system/
-├── backend/                 # Backend server code
-│   ├── config/              # Configuration files
-│   ├── controllers/         # Route controllers
-│   ├── middleware/          # Custom middleware
-│   ├── models/              # Mongoose models
-│   ├── routes/              # API routes
-│   ├── utils/               # Utility functions
-│   ├── server.js            # Server entry point
-│   └── package.json         # Backend dependencies
-│
-├── frontend/                # Frontend React code
-│   ├── public/              # Static files
-│   ├── src/                 # Source files
-│   │   ├── components/      # Reusable components
-│   │   ├── context/         # Context providers
-│   │   ├── pages/           # Page components
-│   │   │   ├── admin/       # Admin pages
-│   │   │   ├── manager/     # Manager pages
-│   │   │   ├── jury/        # Jury pages
-│   │   │   ├── public/      # Public pages
-│   │   │   └── ...          # Other pages
-│   │   ├── utils/           # Utility functions
-│   │   ├── hooks/           # Custom Utilities
-│   │   ├── layouts/         # Page Templates
-│   │   ├── App.js           # Main component
-│   │   └── index.js         # Entry point
-│   └── package.json         # Frontend dependencies
-│
-├── .gitignore               # Git ignore file
-├── package.json             # Root package.json
-└── README.md                # Project documentation
+![image alt](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)
