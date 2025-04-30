@@ -8,9 +8,8 @@ A comprehensive web application for managing academic job postings, applications
 5. Environment Variables
 6. Usage
 7. User Roles
-8. API Documentation
-9. Project Structure
-10. Contributing
+8. Project Structure
+   
 ### Features
 * Multi-role user system * (Admin, Manager, Jury, Applicant)
 * Comprehensive job posting management 
@@ -125,5 +124,115 @@ he system supports four user roles, each with specific permissions and capabilit
 * **Submission Override and Auditing:** Grants administrators the capability to override submissions if necessary and audit system activities.
 
 ### API Documentation
+#### API Endpoints
 
+This section provides a comprehensive overview of the available API endpoints, organized by their respective route files:
 
+## 1. `/api/users` (User Management)
+
+* `GET /api/users`: Retrieves a list of all users.
+* `GET /api/users/role/:role`: Retrieves users filtered by their specific role.
+* `GET /api/users/:id`: Retrieves details for a specific user based on their ID.
+* `PATCH /api/users/:id/role`: Updates the role of a specific user.
+* `GET /api/users/stats`: Retrieves statistical information about users.
+
+## 2. `/api/job-postings` (Job Posting Management)
+
+* `POST /api/job-postings`: Creates a new job posting.
+* `GET /api/job-postings`: Retrieves a list of all job postings.
+* `GET /api/job-postings/:id`: Retrieves details for a specific job posting based on its ID.
+* `PUT /api/job-postings/:id`: Updates the details of a specific job posting.
+* `DELETE /api/job-postings/:id`: Deletes a specific job posting.
+* `PATCH /api/job-postings/:id/status`: Updates the status of a specific job posting.
+* `GET /api/job-postings/:id/stats`: Retrieves statistical information for a specific job posting.
+* `GET /api/job-postings/stats`: Retrieves overall statistics for all job postings.
+
+## 3. `/api/activities` (Activity Tracking)
+
+* `GET /api/activities`: Retrieves a list of all activities.
+* `POST /api/activities`: Creates a new activity record.
+* `GET /api/activities/:id`: Retrieves details for a specific activity based on its ID.
+* `PUT /api/activities/:id`: Updates the details of a specific activity.
+* `DELETE /api/activities/:id`: Deletes a specific activity.
+* `GET /api/activities/user/:userId`: Retrieves activities associated with a specific user ID.
+* `GET /api/activities/types`: Retrieves a list of available activity types.
+
+## 4. `/api/reports` (Reporting)
+
+* `GET /api/reports/applications`: Retrieves reports related to applications.
+* `GET /api/reports/evaluations`: Retrieves reports related to evaluations.
+* `GET /api/reports/users`: Retrieves reports related to users.
+* `POST /api/reports/generate/pdf`: Generates a PDF report based on the request.
+* `GET /api/reports/statistics`: Retrieves various system statistics.
+
+## 5. `/api/criteria` (Evaluation Criteria Management)
+
+* `POST /api/criteria`: Creates new evaluation criteria.
+* `GET /api/criteria`: Retrieves a list of all evaluation criteria.
+* `GET /api/criteria/:id`: Retrieves details for specific evaluation criteria based on its ID.
+* `PUT /api/criteria/:id`: Updates the details of specific evaluation criteria.
+* `DELETE /api/criteria/:id`: Deletes specific evaluation criteria.
+* `POST /api/criteria/calculate-score`: Calculates a score based on provided criteria.
+* `POST /api/criteria/generate-table`: Generates a table representation of the criteria.
+
+## 6. `/api/uploads` (File Upload Management)
+
+* `POST /api/uploads`: Handles generic file uploads.
+* `GET /api/uploads/:id`: Retrieves information about a specific uploaded file based on its ID.
+* `DELETE /api/uploads/:id`: Deletes a specific uploaded file.
+* `POST /api/uploads/document`: Handles the upload of document files.
+* `POST /api/uploads/publication`: Handles the upload of publication files.
+* `POST /api/uploads/profile`: Handles the upload of profile-related files.
+
+## 7. `/api/applications` (Application Management)
+
+* `POST /api/applications`: Creates a new application.
+* `GET /api/applications`: Retrieves a list of all applications.
+* `GET /api/applications/:id`: Retrieves details for a specific application based on its ID.
+* `PUT /api/applications/:id`: Updates the details of a specific application.
+* `POST /api/applications/:id/submit`: Submits a specific application.
+* `POST /api/applications/:id/documents`: Handles the upload of documents for a specific application.
+* `POST /api/applications/:id/publications`: Handles the upload of publications for a specific application.
+* `GET /api/applications/job/:jobId`: Retrieves applications associated with a specific job posting ID.
+* `GET /api/applications/stats`: Retrieves statistical information about applications.
+
+## 8. `/api/evaluations` (Evaluation Management)
+
+* `GET /api/evaluations/assignments`: Retrieves evaluation assignments for the current user (e.g., jury member).
+* `GET /api/evaluations/application/:id`: Retrieves evaluations for a specific application ID.
+* `POST /api/evaluations/submit/:assignmentId`: Submits an evaluation for a specific assignment.
+
+### Project Structure
+
+academic-application-system/
+├── backend/                 # Backend server code
+│   ├── config/              # Configuration files
+│   ├── controllers/         # Route controllers
+│   ├── middleware/          # Custom middleware
+│   ├── models/              # Mongoose models
+│   ├── routes/              # API routes
+│   ├── utils/               # Utility functions
+│   ├── server.js            # Server entry point
+│   └── package.json         # Backend dependencies
+│
+├── frontend/                # Frontend React code
+│   ├── public/              # Static files
+│   ├── src/                 # Source files
+│   │   ├── components/      # Reusable components
+│   │   ├── context/         # Context providers
+│   │   ├── pages/           # Page components
+│   │   │   ├── admin/       # Admin pages
+│   │   │   ├── manager/     # Manager pages
+│   │   │   ├── jury/        # Jury pages
+│   │   │   ├── public/      # Public pages
+│   │   │   └── ...          # Other pages
+│   │   ├── utils/           # Utility functions
+│   │   ├── hooks/           # Custom Utilities
+│   │   ├── layouts/         # Page Templates
+│   │   ├── App.js           # Main component
+│   │   └── index.js         # Entry point
+│   └── package.json         # Frontend dependencies
+│
+├── .gitignore               # Git ignore file
+├── package.json             # Root package.json
+└── README.md                # Project documentation
