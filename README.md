@@ -1,68 +1,77 @@
-# Academic Staff Application System
-A comprehensive web application for managing academic job postings, applications, and evaluation processes in higher education institutions. This system streamlines the entire workflow from job posting creation to applicant evaluation and final decision-making.
-## Table Of Content
-1. Features
-2. Technology Stack
-3. System Architecture
-4. Installation
-5. Environment Variables
-6. Usage
-7. User Roles
-8. Project Structure
-   
-### Features
-* Multi-role user system * (Admin, Manager, Jury, Applicant)
-* Comprehensive job posting management 
-   Application submission and tracking 
-* Document upload and management 
-* Customizable evaluation criteria 
-* Jury assignment and evaluation process 
-* Secure authentication and authorization 
-* Responsive design for all devices 
-* Real-time notifications 
-* Detailed reporting and statistics 
+# 🎓 Academic Staff Application System
 
-### Technology Stack
+A comprehensive web application for managing academic job postings, applications, and evaluation processes in higher education institutions. This system streamlines the entire workflow from job posting creation to applicant evaluation and final decision-making.
+
+## 📑 Table Of Content
+1. ✨ Features
+2. 🛠️ Technology Stack
+3. 🏗️ System Architecture
+4. ⚙️ Installation
+5. 🔧 Environment Variables
+6. 💻 Usage
+7. 👥 User Roles
+8. 📂 Project Structure
+
+### ✨ Features
+* 👨‍💼 Multi-role user system (Admin, Manager, Jury, Applicant)
+* 📢 Comprehensive job posting management
+* 📝 Application submission and tracking 
+* 📂 Document upload and management 
+* ⚖️ Customizable evaluation criteria 
+* 👥 Jury assignment and evaluation process 
+* 🔒 Secure authentication and authorization 
+* 📱 Responsive design for all devices 
+* 🔔 Real-time notifications 
+* 📊 Detailed reporting and statistics 
+
+### 🛠️ Technology Stack
 
 #### Frontend
-   **React.js** - UI library  
-   **React Router** - Navigation and routing  
-   **Context API** - State management  
-   **Axios** - HTTP client  
-   **CSS3** - Styling
-
+   ![React](https://img.shields.io/badge/-React.js-61DAFB?logo=react&logoColor=white) - UI library  
+   ![React Router](https://img.shields.io/badge/-React_Router-CA4245?logo=react-router&logoColor=white) - Navigation and routing  
+   ![Context API](https://img.shields.io/badge/-Context_API-000000?logo=react&logoColor=white) - State management  
+   ![Axios](https://img.shields.io/badge/-Axios-5A29E4?logo=axios&logoColor=white) - HTTP client  
+   ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white) - Styling
 
 #### Backend
-   **Node.js** - Runtime environment  
-   **Express.js** - Web framework  
-   **MongoDB** - Database  
-   **Mongoose** - ODM for MongoDB  
-   **JWT** - Authentication  
-   **Bcrypt** - Password hashing  
-   **Multer** - File uploads  
+   ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white) - Runtime environment  
+   ![Express](https://img.shields.io/badge/-Express.js-000000?logo=express&logoColor=white) - Web framework  
+   ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white) - Database  
+   ![Mongoose](https://img.shields.io/badge/-Mongoose-880000?logo=mongoose&logoColor=white) - ODM for MongoDB  
+   ![JWT](https://img.shields.io/badge/-JWT-000000?logo=json-web-tokens&logoColor=white) - Authentication  
+   ![Bcrypt](https://img.shields.io/badge/-Bcrypt-000000?logo=bcrypt&logoColor=white) - Password hashing  
+   ![Multer](https://img.shields.io/badge/-Multer-000000?logo=multer&logoColor=white) - File uploads  
 
-### System Architecture
-![image alt](https://github.com/jujuGthb/AcademicApp/blob/f481897f643a6309760958a1b82f74c47e8e35bd/applicationOverview.png)
+### 🏗️ System Architecture
+![System Architecture](https://github.com/jujuGthb/AcademicApp/blob/f481897f643a6309760958a1b82f74c47e8e35bd/applicationOverview.png)
 
-### Installation
+### ⚙️ Installation
 
 #### Prerequisites
-- Node.js
-- MongoDB
-- npm or yarn
-#### Setup Instructions
+- ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
+- ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white)
+- ![npm](https://img.shields.io/badge/-npm-CB3837?logo=npm&logoColor=white) or ![Yarn](https://img.shields.io/badge/-Yarn-2C8EBB?logo=yarn&logoColor=white)
+
+#### 🛠️ Setup Instructions
 ##### 1. Clone the repository
+```bash
 git clone https://github.com/jujuGthb/academicApp  
-cd frontend/backend
-##### 2. Install dependencies
-###### Install backend dependencies
+```
+
+## ⚙️ Installation & Setup
+
+### 📦 Install Dependencies
+
+#### Backend Dependencies
+```bash
 cd backend
 npm install
-
-###### Install frontend dependencies
+```
+#### Frontend Dependencies
+```bash
 cd ../frontend
 npm install
-
+```
 ##### 3. Start the development servers
 ###### Start backend server (from backend directory)
 npm run dev
@@ -70,139 +79,179 @@ npm run dev
 ###### Start frontend server (from frontend directory)
 npm start
 
-### Environment Variables
-To configure the backend application, create a `.env` file in the backend director
-**Server Configuration:**
+# 📚 Academic App Backend  
 
-* `PORT`: Specifies the port on which the server will listen for incoming requests (e.g., `5000`).
-* `NODE_ENV`: Sets the environment for the application, typically `development` during development and `production` in a production deployment.
+## 🔧 Environment Variables  
 
-**MongoDB Connection:**
+Create a `.env` file in the `backend` directory with the following variables:  
 
-* `MONGO_URI`: The connection string used to connect to your MongoDB database. Replace `mongodb://localhost:27017/academic-app` with your actual MongoDB connection URI (e.g., `mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority`).
+### 🖥 **Server Configuration**  
+- `PORT` ➡ Port for the server (e.g., `5000`).  
+- `NODE_ENV` ➡ Environment mode (`development` or `production`).  
 
-**JWT Configuration:**
+### 🗃 **MongoDB Connection**  
+- `MONGO_URI` ➡ MongoDB connection string (e.g., `mongodb://localhost:27017/academic-app`).  
 
-* `JWT_SECRET`: A secret key used to sign and verify JSON Web Tokens (JWTs) for authentication. Choose a strong, unique secret key (e.g., a randomly generated string).
-* `JWT_EXPIRE`: Defines the expiration time for generated JWTs. This value is typically expressed in units like hours (`h`), minutes (`m`), or seconds (`s`) (e.g., `24h` for 24 hours).
+### 🔐 **JWT Configuration**  
+- `JWT_SECRET` ➡ Secret key for JWT signing (e.g., `your_strong_secret`).  
+- `JWT_EXPIRE` ➡ JWT expiration time (e.g., `24h`).  
 
-**File Upload Configuration:**
+### 📂 **File Upload Configuration**  
+- `MAX_FILE_SIZE` ➡ Max file size in bytes (e.g., `5000000` for 5MB).  
+- `FILE_UPLOAD_PATH` ➡ Upload directory (e.g., `./public/uploads`).  
 
-* `MAX_FILE_SIZE`: The maximum allowed size for uploaded files, specified in bytes (e.g., `5000000` for 5MB).
-* `FILE_UPLOAD_PATH`: The directory where uploaded files will be stored on the server (e.g., `./public/uploads`). Ensure this directory exists and the application has write permissions to it.
+---
 
-### Usage
-**Access the application**
-- Development: [http://localhost:3000](http://localhost:3000)
+## 🚀 **Usage**  
+- **Development:** 🌐 [http://localhost:3000](http://localhost:3000)  
 
-### User Roles
-he system supports four user roles, each with specific permissions and capabilities:
+---
 
-**Applicant (Default)**
+## 👥 **User Roles**  
 
-* **Registration and Authentication:** Applicants can register and securely authenticate using their Turkish National Identity Number (TC Kimlik No).
-* **Application Submission:** Enables applicants to fill out and submit the application form.
-* **Document Upload:** Allows applicants to upload necessary supporting documents.
-* **Application Tracking:** Provides applicants with the ability to monitor the real-time status of their submitted applications.
+### 👤 **Applicant (Default)**  
+- ✅ Register & authenticate with **TC Kimlik No**.  
+- 📝 Submit applications.  
+- 📤 Upload documents.  
+- 🔍 Track application status.  
 
-**Jury Member**
+### 🎓 **Jury Member**  
+- 📢 View assigned announcements.  
+- 📑 Review applicant documents.  
+- ⭐ Submit scores & comments.  
 
-* **Assigned Announcement Review:** Jury members can view the announcements they have been assigned to evaluate.
-* **Applicant Document Review:** Permits jury members to access and review the documents submitted by applicants.
-* **Evaluation Submission:** Allows jury members to submit scores and provide comments on the applications they review.
+### 👔 **Manager**  
+- 📢 Create/edit announcements.  
+- ⚖ Define rules & weights.  
+- 👥 Assign jury members.  
+- 🔍 Oversee evaluations.  
 
-**Manager**
+### 👑 **Administrator**  
+- 🔓 Full system access.  
+- 👥 Manage users & roles.  
+- ⚡ Override submissions.  
+- 📊 Audit system activities.  
 
-* **Announcement Management:** Managers can create new announcements and edit existing ones.
-* **Rule Definition:** Enables managers to define category weights and establish minimum score requirements for applications.
-* **Jury Assignment:** Allows managers to assign specific jury members to evaluate particular announcements.
-* **Evaluation Oversight:** Provides managers with the ability to review the evaluations submitted by jury members.
+---
 
-**Administrator**
+## 🔄 API Endpoints
 
-* **Full System Access:** Administrators have unrestricted access to all modules and functionalities within the system.
-* **User and Role Management:** Permits administrators to manage user accounts, assign roles, and control system access levels.
-* **Submission Override and Auditing:** Grants administrators the capability to override submissions if necessary and audit system activities.
+### 1️⃣ **User Management** `/api/users`
+👥 Manage system users and roles  
 
-### API Documentation
-#### API Endpoints
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `GET` | `/api/users` | Get all users | 📜 |
+| `GET` | `/api/users/role/:role` | Get users by role | 🎯 |
+| `GET` | `/api/users/:id` | Get user details by ID | ℹ️ |
+| `PATCH` | `/api/users/:id/role` | Update user role | 🔄 |
+| `GET` | `/api/users/stats` | Get user statistics | 📊 |
 
-This section provides a comprehensive overview of the available API endpoints, organized by their respective route files:
+---
 
-## 1. `/api/users` (User Management)
+### 2️⃣ **Job Posting Management** `/api/job-postings`
+💼 Manage academic job postings  
 
-* `GET /api/users`: Retrieves a list of all users.
-* `GET /api/users/role/:role`: Retrieves users filtered by their specific role.
-* `GET /api/users/:id`: Retrieves details for a specific user based on their ID.
-* `PATCH /api/users/:id/role`: Updates the role of a specific user.
-* `GET /api/users/stats`: Retrieves statistical information about users.
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `POST` | `/api/job-postings` | Create new job posting | ➕ |
+| `GET` | `/api/job-postings` | Get all job postings | 📋 |
+| `GET` | `/api/job-postings/:id` | Get posting by ID | ℹ️ |
+| `PUT` | `/api/job-postings/:id` | Update job posting | ✏️ |
+| `DELETE` | `/api/job-postings/:id` | Delete job posting | ❌ |
+| `PATCH` | `/api/job-postings/:id/status` | Update posting status | 🔄 |
+| `GET` | `/api/job-postings/:id/stats` | Get posting statistics | 📊 |
+| `GET` | `/api/job-postings/stats` | Get all postings stats | 📈 |
 
-## 2. `/api/job-postings` (Job Posting Management)
+---
 
-* `POST /api/job-postings`: Creates a new job posting.
-* `GET /api/job-postings`: Retrieves a list of all job postings.
-* `GET /api/job-postings/:id`: Retrieves details for a specific job posting based on its ID.
-* `PUT /api/job-postings/:id`: Updates the details of a specific job posting.
-* `DELETE /api/job-postings/:id`: Deletes a specific job posting.
-* `PATCH /api/job-postings/:id/status`: Updates the status of a specific job posting.
-* `GET /api/job-postings/:id/stats`: Retrieves statistical information for a specific job posting.
-* `GET /api/job-postings/stats`: Retrieves overall statistics for all job postings.
+### 3️⃣ **Activity Tracking** `/api/activities`
+📈 Track system activities  
 
-## 3. `/api/activities` (Activity Tracking)
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `GET` | `/api/activities` | Get all activities | 📜 |
+| `POST` | `/api/activities` | Create new activity | ➕ |
+| `GET` | `/api/activities/:id` | Get activity by ID | ℹ️ |
+| `PUT` | `/api/activities/:id` | Update activity | ✏️ |
+| `DELETE` | `/api/activities/:id` | Delete activity | ❌ |
+| `GET` | `/api/activities/user/:userId` | Get user activities | 👤 |
+| `GET` | `/api/activities/types` | Get activity types | 🏷️ |
 
-* `GET /api/activities`: Retrieves a list of all activities.
-* `POST /api/activities`: Creates a new activity record.
-* `GET /api/activities/:id`: Retrieves details for a specific activity based on its ID.
-* `PUT /api/activities/:id`: Updates the details of a specific activity.
-* `DELETE /api/activities/:id`: Deletes a specific activity.
-* `GET /api/activities/user/:userId`: Retrieves activities associated with a specific user ID.
-* `GET /api/activities/types`: Retrieves a list of available activity types.
+---
 
-## 4. `/api/reports` (Reporting)
+### 4️⃣ **Reporting** `/api/reports`
+📊 Generate system reports  
 
-* `GET /api/reports/applications`: Retrieves reports related to applications.
-* `GET /api/reports/evaluations`: Retrieves reports related to evaluations.
-* `GET /api/reports/users`: Retrieves reports related to users.
-* `POST /api/reports/generate/pdf`: Generates a PDF report based on the request.
-* `GET /api/reports/statistics`: Retrieves various system statistics.
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `GET` | `/api/reports/applications` | Get application reports | 📑 |
+| `GET` | `/api/reports/evaluations` | Get evaluation reports | 📝 |
+| `GET` | `/api/reports/users` | Get user reports | 👥 |
+| `POST` | `/api/reports/generate/pdf` | Generate PDF report | 🖨️ |
+| `GET` | `/api/reports/statistics` | Get system statistics | 📈 |
 
-## 5. `/api/criteria` (Evaluation Criteria Management)
+---
 
-* `POST /api/criteria`: Creates new evaluation criteria.
-* `GET /api/criteria`: Retrieves a list of all evaluation criteria.
-* `GET /api/criteria/:id`: Retrieves details for specific evaluation criteria based on its ID.
-* `PUT /api/criteria/:id`: Updates the details of specific evaluation criteria.
-* `DELETE /api/criteria/:id`: Deletes specific evaluation criteria.
-* `POST /api/criteria/calculate-score`: Calculates a score based on provided criteria.
-* `POST /api/criteria/generate-table`: Generates a table representation of the criteria.
+### 5️⃣ **Evaluation Criteria** `/api/criteria`
+📝 Manage evaluation criteria  
 
-## 6. `/api/uploads` (File Upload Management)
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `POST` | `/api/criteria` | Create new criteria | ➕ |
+| `GET` | `/api/criteria` | Get all criteria | 📜 |
+| `GET` | `/api/criteria/:id` | Get criteria by ID | ℹ️ |
+| `PUT` | `/api/criteria/:id` | Update criteria | ✏️ |
+| `DELETE` | `/api/criteria/:id` | Delete criteria | ❌ |
+| `POST` | `/api/criteria/calculate-score` | Calculate score | 🧮 |
+| `POST` | `/api/criteria/generate-table` | Generate criteria table | 📋 |
 
-* `POST /api/uploads`: Handles generic file uploads.
-* `GET /api/uploads/:id`: Retrieves information about a specific uploaded file based on its ID.
-* `DELETE /api/uploads/:id`: Deletes a specific uploaded file.
-* `POST /api/uploads/document`: Handles the upload of document files.
-* `POST /api/uploads/publication`: Handles the upload of publication files.
-* `POST /api/uploads/profile`: Handles the upload of profile-related files.
+---
 
-## 7. `/api/applications` (Application Management)
+### 6️⃣ **File Uploads** `/api/uploads`
+📁 Manage file uploads  
 
-* `POST /api/applications`: Creates a new application.
-* `GET /api/applications`: Retrieves a list of all applications.
-* `GET /api/applications/:id`: Retrieves details for a specific application based on its ID.
-* `PUT /api/applications/:id`: Updates the details of a specific application.
-* `POST /api/applications/:id/submit`: Submits a specific application.
-* `POST /api/applications/:id/documents`: Handles the upload of documents for a specific application.
-* `POST /api/applications/:id/publications`: Handles the upload of publications for a specific application.
-* `GET /api/applications/job/:jobId`: Retrieves applications associated with a specific job posting ID.
-* `GET /api/applications/stats`: Retrieves statistical information about applications.
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `POST` | `/api/uploads` | Generic file upload | ⬆️ |
+| `GET` | `/api/uploads/:id` | Get upload by ID | ℹ️ |
+| `DELETE` | `/api/uploads/:id` | Delete upload | ❌ |
+| `POST` | `/api/uploads/document` | Upload document | 📄 |
+| `POST` | `/api/uploads/publication` | Upload publication | 📚 |
+| `POST` | `/api/uploads/profile` | Upload profile file | 👤 |
 
-## 8. `/api/evaluations` (Evaluation Management)
+---
 
-* `GET /api/evaluations/assignments`: Retrieves evaluation assignments for the current user (e.g., jury member).
-* `GET /api/evaluations/application/:id`: Retrieves evaluations for a specific application ID.
-* `POST /api/evaluations/submit/:assignmentId`: Submits an evaluation for a specific assignment.
+### 7️⃣ **Application Management** `/api/applications`
+📑 Manage applications  
 
-### Project Structure
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `POST` | `/api/applications` | Create application | ➕ |
+| `GET` | `/api/applications` | Get all applications | 📜 |
+| `GET` | `/api/applications/:id` | Get application by ID | ℹ️ |
+| `PUT` | `/api/applications/:id` | Update application | ✏️ |
+| `POST` | `/api/applications/:id/submit` | Submit application | 📤 |
+| `POST` | `/api/applications/:id/documents` | Upload documents | 📄 |
+| `POST` | `/api/applications/:id/publications` | Upload publications | 📚 |
+| `GET` | `/api/applications/job/:jobId` | Get applications by job | 🔗 |
+| `GET` | `/api/applications/stats` | Get application stats | 📊 |
 
-![image alt](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)
+---
+
+### 8️⃣ **Evaluation Management** `/api/evaluations`
+⭐ Manage evaluations  
+
+| Method | Endpoint | Description | Emoji |
+|--------|----------|-------------|-------|
+| `GET` | `/api/evaluations/assignments` | Get user assignments | 📋 |
+| `GET` | `/api/evaluations/application/:id` | Get app evaluations | 📝 |
+| `POST` | `/api/evaluations/submit/:assignmentId` | Submit evaluation | ✅ |
+
+---
+
+## 🏗️ Project Structure
+![Folder Structure](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)
+
+## 🗂 **Project Structure**  
+![Folder Structure](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)  
