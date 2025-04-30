@@ -1,35 +1,48 @@
-const User = require("../models/User")
-const jwt = require("jsonwebtoken")
-const config = require("../config/config")
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const config = require("../config/config");
+const bcrypt = require("bcryptjs");
 
 // @desc    Register user
 // @route   POST /api/users
 // @access  Public
 exports.registerUser = async (req, res) => {
-  const { name, email, password, title, department, faculty, fieldArea, doctorateDate, lastPromotionDate } = req.body
+  const {
+    name,
+    tcNumber,
+    password,
+    title,
+    department,
+    faculty,
+    fieldArea,
+    doctorateDate,
+    lastPromotionDate,
+  } = req.body;
+
+  const hash = await bcrypt.hash(password, 10);
 
   try {
     // Check if user exists
-    let user = await User.findOne({ email })
+    let user = await User.findOne({ tcNumber });
     if (user) {
-      return res.status(400).json({ message: "User already exists" })
+      return res.status(400).json({ message: "User already exists" });
     }
 
     // Create new user
     user = new User({
       name,
-      email,
-      password,
+      tcNumber,
+      password: hash,
       title,
       department,
       faculty,
       fieldArea,
       doctorateDate: doctorateDate ? new Date(doctorateDate) : null,
       lastPromotionDate: lastPromotionDate ? new Date(lastPromotionDate) : null,
-    })
+    });
 
     // Save user to database
-    await user.save()
+    await user.save();
 
     // Create JWT payload
     const payload = {
@@ -37,203 +50,289 @@ exports.registerUser = async (req, res) => {
         id: user.id,
         role: user.role,
       },
-    }
+    };
 
     // Sign token
-    jwt.sign(payload, config.jwtSecret, { expiresIn: config.jwtExpiration }, (err, token) => {
-      if (err) throw err
-      res.json({ token })
-    })
+    jwt.sign(
+      payload,
+      config.jwtSecret,
+      { expiresIn: config.jwtExpiration },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
   } catch (err) {
-    console.error(err.message)
-    res.status(500).json({ message: "Server error" })
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
   }
-}
+};
 
-// @desc    Get all users
-// @route   GET /api/users
-// @access  Private/Admin
-exports.getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find().select("-password")
-    res.json(users)
-  } catch (err) {
-    console.error(err.message)
-    res.status(500).json({ message: "Server error" })
-  }
-}
+// The rest remains mostly the same, except for places using "email":
 
-// @desc    Get user by ID
-// @route   GET /api/users/:id
-// @access  Private/Admin
-exports.getUserById = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select("-password")
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" })
-    }
-
-    res.json(user)
-  } catch (err) {
-    console.error(err.message)
-    if (err.kind === "ObjectId") {
-      return res.status(404).json({ message: "User not found" })
-    }
-    res.status(500).json({ message: "Server error" })
-  }
-}
-
-// @desc    Update user profile
-// @route   PUT /api/users/profile
-// @access  Private
-exports.updateProfile = async (req, res) => {
-  const { name, title, department, faculty, fieldArea, doctorateDate, lastPromotionDate } = req.body
-
-  try {
-    const user = await User.findById(req.user.id)
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" })
-    }
-
-    // Update fields
-    if (name) user.name = name
-    if (title) user.title = title
-    if (department) user.department = department
-    if (faculty) user.faculty = faculty
-    if (fieldArea) user.fieldArea = fieldArea
-    if (doctorateDate) user.doctorateDate = new Date(doctorateDate)
-    if (lastPromotionDate) user.lastPromotionDate = new Date(lastPromotionDate)
-
-    await user.save()
-
-    res.json(user)
-  } catch (err) {
-    console.error(err.message)
-    res.status(500).json({ message: "Server error" })
-  }
-}
-
-// @desc    Update user password
-// @route   PUT /api/users/password
-// @access  Private
-exports.updatePassword = async (req, res) => {
-  const { currentPassword, newPassword } = req.body
-
-  try {
-    const user = await User.findById(req.user.id)
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" })
-    }
-
-    // Check current password
-    const isMatch = await user.comparePassword(currentPassword)
-    if (!isMatch) {
-      return res.status(400).json({ message: "Current password is incorrect" })
-    }
-
-    // Update password
-    user.password = newPassword
-    await user.save()
-
-    res.json({ message: "Password updated successfully" })
-  } catch (err) {
-    console.error(err.message)
-    res.status(500).json({ message: "Server error" })
-  }
-}
-
-// @desc    Create new user (admin only)
-// @route   POST /api/users/admin
-// @access  Private/Admin
 exports.createUser = async (req, res) => {
-  const { name, email, password, role, title, department, faculty, fieldArea } = req.body
+  const {
+    name,
+    tcNumber,
+    password,
+    role,
+    title,
+    department,
+    faculty,
+    fieldArea,
+  } = req.body;
 
   try {
     // Check if user exists
-    let user = await User.findOne({ email })
+    let user = await User.findOne({ tcNumber });
     if (user) {
-      return res.status(400).json({ message: "User already exists" })
+      return res.status(400).json({ message: "User already exists" });
     }
 
     // Create new user
     user = new User({
       name,
-      email,
+      tcNumber,
       password,
       role,
       title,
       department,
       faculty,
       fieldArea,
-    })
+    });
 
-    // Save user to database
-    await user.save()
+    await user.save();
 
-    res.json(user)
+    res.json(user);
   } catch (err) {
-    console.error(err.message)
-    res.status(500).json({ message: "Server error" })
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
   }
-}
+};
 
-// @desc    Update user (admin only)
-// @route   PUT /api/users/:id
-// @access  Private/Admin
 exports.updateUser = async (req, res) => {
-  const { name, email, role, title, department, faculty, fieldArea, password } = req.body
+  const {
+    name,
+    tcNumber,
+    role,
+    title,
+    department,
+    faculty,
+    fieldArea,
+    password,
+  } = req.body;
 
   try {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id);
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" })
+      return res.status(404).json({ message: "User not found" });
     }
 
     // Update fields
-    if (name) user.name = name
-    if (email) user.email = email
-    if (role) user.role = role
-    if (title) user.title = title
-    if (department) user.department = department
-    if (faculty) user.faculty = faculty
-    if (fieldArea) user.fieldArea = fieldArea
-    if (password) user.password = password
+    if (name) user.name = name;
+    if (tcNumber) user.tcNumber = tcNumber;
+    if (role) user.role = role;
+    if (title) user.title = title;
+    if (department) user.department = department;
+    if (faculty) user.faculty = faculty;
+    if (fieldArea) user.fieldArea = fieldArea;
+    if (password) user.password = password;
 
-    await user.save()
+    await user.save();
 
-    res.json(user)
+    res.json(user);
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
     if (err.kind === "ObjectId") {
-      return res.status(404).json({ message: "User not found" })
+      return res.status(404).json({ message: "User not found" });
     }
-    res.status(500).json({ message: "Server error" })
+    res.status(500).json({ message: "Server error" });
   }
-}
+};
 
-// @desc    Delete user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
-exports.deleteUser = async (req, res) => {
+exports.getAllUsers = (res, req, next) => {
   try {
-    const user = await User.findById(req.params.id)
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" })
-    }
-
-    await user.remove()
-
-    res.json({ message: "User removed" })
-  } catch (err) {
-    console.error(err.message)
-    if (err.kind === "ObjectId") {
-      return res.status(404).json({ message: "User not found" })
-    }
-    res.status(500).json({ message: "Server error" })
+    const users = User.find();
+    return res.status(200).json({ message: "success", users: users });
+  } catch (error) {
+    console.log("error users not found");
+    return res.status(200).json({ message: "success", users: users });
   }
-}
+};
+
+exports.login = async (req, res) => {
+  let { password, tcNumber } = req.body;
+  console.log(req.body);
+
+  try {
+    // Ensure tcNumber is provided
+    if (!tcNumber) {
+      return res.status(400).json({ message: "TC number is required" });
+    }
+
+    // Find user by TC number
+    let user = await User.findOne({ tcNumber });
+    //console.log(user);
+
+    // If no user found or password is empty
+    if (!user || !password) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password.toString(), user.password);
+    console.log(isMatch);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Passord does not match." });
+    }
+
+    // Create JWT payload with user role
+    const payload = {
+      user: {
+        id: user.id,
+        role: user.role,
+      },
+    };
+
+    // Sign token
+    jwt.sign(
+      payload,
+      config.jwtSecret,
+      { expiresIn: config.jwtExpiration },
+      (err, token) => {
+        if (err) throw err;
+        res.json({
+          token,
+          user: user
+        });
+      }
+    );
+  } catch (err) {
+    console.error("Login error:", err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// @desc    Register a new user
+// @route   POST /api/auth/register
+// @access  Public
+exports.register = async (req, res) => {
+  const { name, password, tcNumber, role } = req.body;
+
+  try {
+    // Check if TC number is already in use
+    let user = await User.findOne({ tcNumber });
+    if (user) {
+      return res.status(400).json({ message: "TC number already in use" });
+    }
+
+    // Create new user
+    user = new User({
+      name,
+      password,
+      tcNumber,
+      // Only allow setting role to applicant during registration
+      // Other roles must be assigned by an admin
+      role: "applicant",
+    });
+
+    // Hash password before saving
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    await user.save();
+
+    // Create JWT payload
+    const payload = {
+      user: {
+        id: user.id,
+        role: user.role,
+      },
+    };
+
+    // Sign token
+    jwt.sign(
+      payload,
+      config.jwtSecret,
+      { expiresIn: config.jwtExpiration },
+      (err, token) => {
+        if (err) throw err;
+        res.json({
+          token,
+          user: {
+            id: user.id,
+            name: user.name,
+            tcNumber: user.tcNumber, // Provide tcNumber instead of email
+            role: user.role,
+          },
+        });
+      }
+    );
+  } catch (err) {
+    console.error("Registration error:", err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// @desc    Get current user
+// @route   GET /api/auth/me
+// @access  Private
+exports.getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// @desc    Verify token
+// @route   GET /api/auth/verify
+// @access  Private
+exports.verifyToken = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// @desc    Update user role (admin only)
+// @route   PATCH /api/auth/users/:id/role
+// @access  Private (Admin only)
+exports.updateUserRole = async (req, res) => {
+  try {
+    const { role } = req.body;
+
+    // Validate role
+    if (!["admin", "manager", "jury", "applicant"].includes(role)) {
+      return res.status(400).json({ message: "Invalid role" });
+    }
+
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.role = role;
+    await user.save();
+
+    res.json({
+      message: "User role updated",
+      user: { id: user.id, name: user.name, role: user.role },
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};

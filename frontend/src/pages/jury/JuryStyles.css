@@ -1,0 +1,420 @@
+/* Jury Dashboard Styles */
+.jury-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.jury-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+.jury-welcome {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.jury-welcome h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.jury-welcome p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.jury-list-container {
+  margin-bottom: 30px;
+}
+
+.jury-list-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.jury-table-container {
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.jury-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jury-table th,
+.jury-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.jury-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.jury-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-in_progress {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status-completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.jury-stats {
+  margin-top: 40px;
+}
+
+.jury-stats h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.jury-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.jury-stat-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.jury-stat-card h3 {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Evaluation Form Styles */
+.evaluation-form-container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-form-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+.evaluation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #444;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.form-group input[type="file"] {
+  padding: 10px 0;
+}
+
+.form-group small {
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Application Details Styles */
+.application-details,
+.application-documents,
+.application-publications,
+.application-citations,
+.category-points {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.application-details h2,
+.application-documents h2,
+.application-publications h2,
+.application-citations h2,
+.category-points h2 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  font-weight: 600;
+  width: 180px;
+  color: #555;
+}
+
+.detail-value {
+  flex: 1;
+  color: #333;
+}
+
+.documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.document-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  color: #555;
+}
+
+.document-info {
+  flex: 1;
+}
+
+.document-name {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.document-date {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  color: #444;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #e0e0e0;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.action-buttons-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.success-message h2 {
+  margin-bottom: 15px;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .jury-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jury-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

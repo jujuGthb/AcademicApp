@@ -8,6 +8,7 @@ import Header from "../components/common/Header";
 
 const CandidateLayout = () => {
   const { user } = useContext(AuthContext);
+  //console.log(user);
 
   return (
     <div className="layout candidate-layout">

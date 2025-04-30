@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   //console.log(typeof navigate);
   const [formData, setFormData] = useState({
-    email: "",
+    tcNumber: "",
     password: "",
     role: "candidate", // Default role
   });
@@ -32,25 +32,22 @@ const Login = () => {
 
     try {
       // Pass the email and password to the login function
-      const success = await login(formData.email, formData.password);
-      //console.log(success);
-      //console.log(formData);
-      //navigate("/candidate/dashboard");
+      const success = await login(formData.tcNumber, formData.password);
 
       if (success) {
         // Redirect based on selected role
-        switch (formData.role) {
+        switch (success.user.role) {
           case "admin":
-            navigate("/admin/dashboard");
+            navigate("/admin");
             break;
           case "manager":
-            navigate("/manager/dashboard");
+            navigate("/manager");
             break;
           case "jury":
-            navigate("/jury/dashboard");
+            navigate("/jury");
             break;
           case "candidate":
-            navigate("/candidate/dashboard");
+            navigate("/candidate");
           default:
             break;
         }
@@ -90,16 +87,16 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">E-posta</label>
+            <label htmlFor="tcNumber">TC Kimlik Numarası</label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              id="tcNumber"
+              name="tcNumber"
+              value={formData.tcNumber}
               onChange={handleChange}
               required
               className="form-control"
-              placeholder="E-posta adresinizi girin"
+              placeholder="TC kimlik numaranızı girin"
             />
           </div>
 

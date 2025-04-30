@@ -17,6 +17,7 @@ const Register = () => {
     fieldArea: "",
     doctorateDate: "",
     lastPromotionDate: "",
+    tcNumber: "",
   });
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
@@ -34,6 +35,7 @@ const Register = () => {
     fieldArea,
     doctorateDate,
     lastPromotionDate,
+    tcNumber,
   } = formData;
 
   const handleChange = (e) => {
@@ -62,9 +64,12 @@ const Register = () => {
         fieldArea,
         doctorateDate: doctorateDate || undefined,
         lastPromotionDate: lastPromotionDate || undefined,
+        tcNumber,
       };
 
       const user = await register(userData);
+
+      console.log('User', user);
       navigate("/candidate/dashboard");
     } catch (err) {
       console.error("Registration error:", err);
@@ -91,16 +96,18 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">E-posta</label>
+          <label htmlFor="tcNumber">T.C. Kimlik Numarası</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
+            type="text"
+            id="tcNumber"
+            name="tcNumber"
+            value={tcNumber}
             onChange={handleChange}
+            maxLength="11"
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="password">Şifre</label>
           <input

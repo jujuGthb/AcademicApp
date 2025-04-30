@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Import routes
-const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/users");
 const jobPostingRoutes = require("./routes/jobPostings");
 const activityRoutes = require("./routes/activities");
@@ -45,7 +44,6 @@ app.use((req, res, next) => {
 
 //console.log("hello");
 // Define Routes
-app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/job-postings", jobPostingRoutes);
 app.use("/api/activities", activityRoutes);

@@ -1,78 +1,145 @@
-const mongoose = require("mongoose")
+// const mongoose = require("mongoose")
 
-const JobPostingSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  department: {
-    type: String,
-    required: true,
-  },
-  faculty: {
-    type: String,
-    required: true,
-  },
-  position: {
-    type: String,
-    enum: ["Dr. Öğretim Üyesi", "Doçent", "Profesör"],
-    required: true,
-  },
-  fieldArea: {
-    type: String,
-    enum: [
-      "Sağlık Bilimleri",
-      "Fen Bilimleri ve Matematik",
-      "Mühendislik",
-      "Ziraat, Orman ve Su Ürünleri",
-      "Eğitim Bilimleri",
-      "Filoloji",
-      "Mimarlık, Planlama ve Tasarım",
-      "Sosyal, Beşeri ve İdari Bilimler",
-      "Spor Bilimleri",
-      "Hukuk",
-      "İlahiyat",
-      "Güzel Sanatlar",
-    ],
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  requiredDocuments: [
-    {
-      name: String,
-      description: String,
-      required: Boolean,
+// const JobPostingSchema = new mongoose.Schema({
+//   title: {
+//     type: String,
+//     required: true,
+//   },
+//   department: {
+//     type: String,
+//     required: true,
+//   },
+//   faculty: {
+//     type: String,
+//     required: true,
+//   },
+//   position: {
+//     type: String,
+//     enum: ["Dr. Öğretim Üyesi", "Doçent", "Profesör"],
+//     required: true,
+//   },
+//   fieldArea: {
+//     type: String,
+//     enum: [
+//       "Sağlık Bilimleri",
+//       "Fen Bilimleri ve Matematik",
+//       "Mühendislik",
+//       "Ziraat, Orman ve Su Ürünleri",
+//       "Eğitim Bilimleri",
+//       "Filoloji",
+//       "Mimarlık, Planlama ve Tasarım",
+//       "Sosyal, Beşeri ve İdari Bilimler",
+//       "Spor Bilimleri",
+//       "Hukuk",
+//       "İlahiyat",
+//       "Güzel Sanatlar",
+//     ],
+//     required: true,
+//   },
+//   description: {
+//     type: String,
+//     required: true,
+//   },
+//   requiredDocuments: [
+//     {
+//       name: String,
+//       description: String,
+//       required: Boolean,
+//     },
+//   ],
+//   startDate: {
+//     type: Date,
+//     required: true,
+//   },
+//   endDate: {
+//     type: Date,
+//     required: true,
+//   },
+//   status: {
+//     type: String,
+//     enum: ["draft", "published", "closed", "completed"],
+//     default: "draft",
+//   },
+//   createdBy: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: "user",
+//     required: true,
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+//   updatedAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+// })
+
+// module.exports = mongoose.model("jobPosting", JobPostingSchema)
+
+const mongoose = require("mongoose");
+
+const JobPostingSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-  ],
-  startDate: {
-    type: Date,
-    required: true,
+    faculty: {
+      type: String,
+      required: true,
+    },
+    department: {
+      type: String,
+      required: true,
+    },
+    position: {
+      type: String,
+      required: true,
+      enum: ["Dr. Öğretim Üyesi", "Doçent", "Profesör"],
+    },
+    fieldArea: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    requirements: {
+      type: String,
+      required: true,
+    },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+      required: true,
+    },
+    requiredDocuments: [
+      {
+        name: String,
+        description: String,
+        required: {
+          type: Boolean,
+          default: true,
+        },
+      },
+    ],
+    status: {
+      type: String,
+      enum: ["draft", "published", "closed"],
+      default: "draft",
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
-  endDate: {
-    type: Date,
-    required: true,
-  },
-  status: {
-    type: String,
-    enum: ["draft", "published", "closed", "completed"],
-    default: "draft",
-  },
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-})
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("jobPosting", JobPostingSchema)
+module.exports = mongoose.model("JobPosting", JobPostingSchema);

@@ -1,102 +1,106 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import ApplicationService from "../services/application-service";
+import { useState, useEffect } from "react";
+import applicationService from "../services/application-service";
 
-export const useApplications = () => {
+export function useApplication() {
   const [applications, setApplications] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchApplications = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await ApplicationService.getApplicationsByCandidate();
-      setApplications(data);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch applications");
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    fetchUserApplications();
   }, []);
 
-  useEffect(() => {
-    fetchApplications();
-  }, [fetchApplications]);
-
-  const fetchApplicationById = async (id) => {
+  const fetchUserApplications = async () => {
     try {
       setLoading(true);
+      const data = await applicationService.getUserApplications();
+      setApplications(data);
       setError(null);
-      const data = await ApplicationService.getApplicationById(id);
+    } catch (err) {
+      setError("Başvurular yüklenirken bir hata oluştu.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchAllApplications = async () => {
+    try {
+      setLoading(true);
+      const data = await applicationService.getAllApplications();
+      setApplications(data);
+      setError(null);
+    } catch (err) {
+      setError("Başvurular yüklenirken bir hata oluştu.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchJuryApplications = async () => {
+    try {
+      setLoading(true);
+      const data = await applicationService.getJuryApplications();
+      setApplications(data);
+      setError(null);
+    } catch (err) {
+      setError(
+        "Değerlendirme bekleyen başvurular yüklenirken bir hata oluştu."
+      );
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getApplicationById = async (id) => {
+    try {
+      setLoading(true);
+      const data = await applicationService.getApplicationById(id);
+      setError(null);
       return data;
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch application");
+      setError("Başvuru detayları yüklenirken bir hata oluştu.");
+      console.error(err);
       return null;
     } finally {
       setLoading(false);
     }
   };
 
-  const createApplication = async (formData) => {
+  const createApplication = async (applicationData) => {
     try {
       setLoading(true);
+      const data = await applicationService.createApplication(applicationData);
+      setApplications([...applications, data]);
       setError(null);
-      const newApplication = await ApplicationService.createApplication(
-        formData
-      );
-      setApplications([newApplication, ...applications]);
-      return newApplication;
+      return data;
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to create application");
-      return null;
+      setError("Başvuru oluşturulurken bir hata oluştu.");
+      console.error(err);
+      throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  const addDocumentToApplication = async (id, formData) => {
+  const updateApplication = async (id, applicationData) => {
     try {
       setLoading(true);
+      const data = await applicationService.updateApplication(
+        id,
+        applicationData
+      );
+      setApplications(applications.map((app) => (app.id === id ? data : app)));
       setError(null);
-      const updatedApplication =
-        await ApplicationService.addDocumentToApplication(id, formData);
-      setApplications(
-        applications.map((app) => (app._id === id ? updatedApplication : app))
-      );
-      return updatedApplication;
+      return data;
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Failed to add document to application"
-      );
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const removeDocumentFromApplication = async (applicationId, documentId) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const updatedApplication =
-        await ApplicationService.removeDocumentFromApplication(
-          applicationId,
-          documentId
-        );
-      setApplications(
-        applications.map((app) =>
-          app._id === applicationId ? updatedApplication : app
-        )
-      );
-      return updatedApplication;
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          "Failed to remove document from application"
-      );
-      return null;
+      setError("Başvuru güncellenirken bir hata oluştu.");
+      console.error(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -105,13 +109,38 @@ export const useApplications = () => {
   const deleteApplication = async (id) => {
     try {
       setLoading(true);
+      await applicationService.deleteApplication(id);
+      setApplications(applications.filter((app) => app.id !== id));
       setError(null);
-      await ApplicationService.deleteApplication(id);
-      setApplications(applications.filter((app) => app._id !== id));
-      return true;
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to delete application");
-      return false;
+      setError("Başvuru silinirken bir hata oluştu.");
+      console.error(err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const submitEvaluation = async (applicationId, evaluationData) => {
+    try {
+      setLoading(true);
+      const data = await applicationService.submitEvaluation(
+        applicationId,
+        evaluationData
+      );
+      setApplications(
+        applications.map((app) =>
+          app.id === applicationId
+            ? { ...app, evaluationStatus: "completed" }
+            : app
+        )
+      );
+      setError(null);
+      return data;
+    } catch (err) {
+      setError("Değerlendirme gönderilirken bir hata oluştu.");
+      console.error(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -121,11 +150,13 @@ export const useApplications = () => {
     applications,
     loading,
     error,
-    fetchApplications,
-    fetchApplicationById,
+    fetchUserApplications,
+    fetchAllApplications,
+    fetchJuryApplications,
+    getApplicationById,
     createApplication,
-    addDocumentToApplication,
-    removeDocumentFromApplication,
+    updateApplication,
     deleteApplication,
+    submitEvaluation,
   };
-};
+}

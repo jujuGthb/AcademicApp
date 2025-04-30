@@ -1,0 +1,73 @@
+const express = require("express");
+const router = express.Router();
+const User = require("../models/User");
+const auth = require("../middleware/auth");
+const roleAuth = require("../middleware/roleAuth");
+const { updateUserRole } = require("../controllers/authController");
+
+// @route   GET api/users
+// @desc    Get all users
+// @access  Private (Admin and Manager only)
+router.get("/", [auth, roleAuth(["admin", "manager"])], async (req, res) => {
+  try {
+    const users = await User.find().select("-password").sort({ createdAt: -1 });
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   GET api/users/role/:role
+// @desc    Get users by role
+// @access  Private (Admin and Manager only)
+router.get(
+  "/role/:role",
+  [auth, roleAuth(["admin", "manager"])],
+  async (req, res) => {
+    try {
+      const { role } = req.params;
+
+      // Validate role
+      if (!["admin", "manager", "jury", "applicant"].includes(role)) {
+        return res.status(400).json({ message: "Invalid role" });
+      }
+
+      const users = await User.find({ role })
+        .select("-password")
+        .sort({ createdAt: -1 });
+      res.json(users);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route   GET api/users/:id
+// @desc    Get user by ID
+// @access  Private (Admin and Manager only)
+router.get("/:id", [auth, roleAuth(["admin", "manager"])], async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   PATCH api/users/:id/role
+// @desc    Update user role
+// @access  Private (Admin only)
+router.patch("/:id/role", [auth, roleAuth(["admin"])], updateUserRole);
+
+module.exports = router;

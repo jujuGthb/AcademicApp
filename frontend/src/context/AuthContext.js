@@ -10,35 +10,31 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [token, setToken] = useState(null);
 
-  const login = async (email, password) => {
+  const login = async (tcNumber, password) => {
     try {
-      /*let user = localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user"))
-        : null;
-      const token = localStorage.getItem("token");
-      console.log(user, token);
-
-      return;*/
+      // console.log(tcNumber);
       setError(null);
-      const response = await fetch(`${server}/api/auth/login`, {
+      const response = await fetch(`${server}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ tcNumber, password }),
       });
+
+      const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
-
-      const data = await response.json();
-      //console.log(data);
+      console.log(data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
       setUser(data.user);
+      setToken(data.token);
       setIsAuthenticated(true);
       return data;
     } catch (err) {
@@ -70,7 +66,7 @@ export const AuthProvider = ({ children }) => {
 
       // Get user data
       const userResponse = await fetch(
-        "http://localhost:5000/api/auth/verify",
+        "http://localhost:5000/api/users/verify",
         {
           headers: {
             "x-auth-token": data.token,
@@ -103,8 +99,10 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         isAuthenticated,
+        setIsAuthenticated,
         loading,
         error,
+        token,
         login,
         register,
         logout,

@@ -1,8 +1,9 @@
 import axios from "axios";
+import { server } from "../components/remote/server";
 
 // Create axios instance with base URL
 const api = axios.create({
-  baseURL: "http://192.168.112.222:5000/api",
+  baseURL: `${server}/api`,
 });
 
 // Add request interceptor to add auth token to all requests

@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom"
-import "./CandidateSidebar.css"
+import { NavLink } from "react-router-dom";
+import "./CandidateSidebar.css";
 
 const CandidateSidebar = ({ user }) => {
   return (
@@ -46,7 +46,7 @@ const CandidateSidebar = ({ user }) => {
         </ul>
       </nav>
     </aside>
-  )
-}
+  );
+};
 
-export default CandidateSidebar
+export default CandidateSidebar;
