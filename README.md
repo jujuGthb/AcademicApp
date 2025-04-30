@@ -52,8 +52,8 @@ A comprehensive web application for managing academic job postings, applications
 - npm or yarn
 #### Setup Instructions
 ##### 1. Clone the repository
-git clone https://github.com/jujuGthb/academicApp
-cd academic-application-system
+git clone https://github.com/jujuGthb/academicApp  
+cd frontend/backend
 ##### 2. Install dependencies
 ###### Install backend dependencies
 cd backend
