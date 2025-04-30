@@ -26,11 +26,12 @@ A comprehensive web application for managing academic job postings, applications
 ### Technology Stack
 
 #### Frontend
-**React.js** - UI library
-**React Router** - Navigation and routing
-**Context API** - State management
-**Axios** - HTTP client
+**React.js** - UI library  
+**React Router** - Navigation and routing  
+**Context API** - State management  
+**Axios** - HTTP client  
 **CSS3** - Styling
+
 
 #### Backend
 **Node.js** - Runtime environment
