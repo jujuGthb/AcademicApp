@@ -34,12 +34,12 @@ A comprehensive web application for managing academic job postings, applications
 
 
 #### Backend
-**Node.js** - Runtime environment
-**Express.js** - Web framework
-**MongoDB** - Database
-**Mongoose** - ODM for MongoDB
-**JWT** - Authentication
-**Bcrypt** - Password hashing
-**Multer** - File uploads
+**Node.js** - Runtime environment  
+**Express.js** - Web framework  
+**MongoDB** - Database  
+**Mongoose** - ODM for MongoDB  
+**JWT** - Authentication  
+**Bcrypt** - Password hashing  
+**Multer** - File uploads  
 
 
