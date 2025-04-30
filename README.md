@@ -42,6 +42,7 @@ A comprehensive web application for managing academic job postings, applications
    **Multer** - File uploads  
 
 ### System Architecture
+![image alt](https://github.com/jujuGthb/AcademicApp/blob/f481897f643a6309760958a1b82f74c47e8e35bd/applicationOverview.png)
 
 ### Installation
 
