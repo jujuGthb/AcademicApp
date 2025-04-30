@@ -13,15 +13,15 @@ A comprehensive web application for managing academic job postings, applications
 10. Contributing
 ### Features
 * Multi-role user system * (Admin, Manager, Jury, Applicant)
-* Comprehensive job posting management *
-   Application submission and tracking *
-* Document upload and management *
-* Customizable evaluation criteria *
-* Jury assignment and evaluation process *
-* Secure authentication and authorization *
-* Responsive design for all devices *
-* Real-time notifications *
-* Detailed reporting and statistics *
+* Comprehensive job posting management 
+   Application submission and tracking 
+* Document upload and management 
+* Customizable evaluation criteria 
+* Jury assignment and evaluation process 
+* Secure authentication and authorization 
+* Responsive design for all devices 
+* Real-time notifications 
+* Detailed reporting and statistics 
 
 ### Technology Stack
 
@@ -52,7 +52,7 @@ A comprehensive web application for managing academic job postings, applications
 - npm or yarn
 #### Setup Instructions
 ##### 1. Clone the repository
-git clone https://github.com/yourusername/academic-application-system.git
+git clone https://github.com/jujuGthb/academicApp
 cd academic-application-system
 ##### 2. Install dependencies
 ###### Install backend dependencies
