@@ -11,3 +11,4 @@ A comprehensive web application for managing academic job postings, applications
 - API Documentation
 - Project Structure
 - Contributing
+## 1. Features
