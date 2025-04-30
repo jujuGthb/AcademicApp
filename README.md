@@ -12,7 +12,7 @@ A comprehensive web application for managing academic job postings, applications
 - Project Structure
 - Contributing
 ### 1. Features
-** Multi-role user system** (Admin, Manager, Jury, Applicant)
+* Multi-role user system * (Admin, Manager, Jury, Applicant)
 ** Comprehensive job posting management **
 ** Application submission and tracking **
 ** Document upload and management **
