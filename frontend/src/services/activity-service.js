@@ -2,6 +2,7 @@ import api from "./api";
 
 const ActivityService = {
   getActivities: async () => {
+    console.log("ok");
     const response = await api.get("/activities");
     return response.data;
   },

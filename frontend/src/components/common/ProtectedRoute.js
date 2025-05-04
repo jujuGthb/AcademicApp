@@ -5,16 +5,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Loading from "../../Loading";
 
-const ProtectedRoute = ({ allowedRoles, isLoading }) => {
-  const { user, token, loading, isAuthenticated, logout } =
-    useContext(AuthContext);
+const ProtectedRoute = ({ allowedRoles, isLoading, isAuthenticated }) => {
+  const { user, token, loading, logout } = useContext(AuthContext);
   console.log(isLoading);
-  console.log(isAuthenticated);
+  //console.log(isAuthenticated);
+
   if (!isLoading) {
     //console.log("user, token");
-    if (!isAuthenticated) {
+    if (!user || !token) {
       return <Navigate to="/login" />;
     }
+    console.log("authenticated");
 
     if (allowedRoles && !allowedRoles.includes(user.role)) {
       console.log("fone");
@@ -35,6 +36,10 @@ const ProtectedRoute = ({ allowedRoles, isLoading }) => {
   } else {
     <Loading />;
   }
+
+  // setTimeout(() => {
+  //   myFunc();
+  // }, 0);
 };
 
 // const ProtectedRoute = ({ element: Component, roles, isLoading, /isAuthenticated, user,/ ...rest }) => {

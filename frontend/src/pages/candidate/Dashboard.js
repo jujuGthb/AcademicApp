@@ -24,15 +24,19 @@ const Dashboard = () => {
         setError(null);
 
         const activitiesData = await ActivityService.getActivities();
-        setActivities(activitiesData.slice(0, 5));
+        setActivities(activitiesData?.slice(0, 5));
 
-        const jobPostingsData = await JobPostingService.getJobPostingsByStatus("active");
-        setJobPostings(jobPostingsData.slice(0, 3));
+        const jobPostingsData = await JobPostingService.getJobPostingsByStatus(
+          "active"
+        );
+        setJobPostings(jobPostingsData?.slice(0, 3));
 
-        const statsData = await ActivityService.getActivityStats();
+        const statsData = await ActivityService?.getActivityStats();
         setStats(statsData);
       } catch (err) {
-        setError("Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
+        setError(
+          "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+        );
         console.error("Dashboard data fetch error:", err);
       } finally {
         setLoading(false);
@@ -50,7 +54,10 @@ const Dashboard = () => {
       <div className="container mt-4">
         <div className="mb-4">
           <h1>Hoş Geldiniz, {user?.name || "Kullanıcı"}</h1>
-          <p>Akademik Yükseltme Sistemi'ne hoş geldiniz. Aşağıda son faaliyetlerinizi ve açık iş ilanlarını görebilirsiniz.</p>
+          <p>
+            Akademik Yükseltme Sistemi'ne hoş geldiniz. Aşağıda son
+            faaliyetlerinizi ve açık iş ilanlarını görebilirsiniz.
+          </p>
         </div>
 
         {error && <div className="alert alert-danger">{error}</div>}
@@ -83,7 +90,9 @@ const Dashboard = () => {
                     </div>
                   </div>
                 ) : (
-                  <p className="text-muted">Henüz faaliyet kaydınız bulunmamaktadır.</p>
+                  <p className="text-muted">
+                    Henüz faaliyet kaydınız bulunmamaktadır.
+                  </p>
                 )}
               </div>
             </div>
@@ -94,7 +103,10 @@ const Dashboard = () => {
             <div className="card h-100">
               <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">Son Faaliyetler</h5>
-                <Link to="/candidate/activities" className="btn btn-sm btn-outline-primary">
+                <Link
+                  to="/candidate/activities"
+                  className="btn btn-sm btn-outline-primary"
+                >
                   Tümünü Gör
                 </Link>
               </div>
@@ -104,8 +116,12 @@ const Dashboard = () => {
                     {activities.map((activity) => (
                       <li key={activity._id} className="list-group-item">
                         <div className="d-flex justify-content-between">
-                          <small className="text-muted">{activity.category}</small>
-                          <small className="text-muted">{formatDate(activity.date)}</small>
+                          <small className="text-muted">
+                            {activity.category}
+                          </small>
+                          <small className="text-muted">
+                            {formatDate(activity.date)}
+                          </small>
                         </div>
                         <strong>{activity.title}</strong>
                         <div className="text-end text-primary">
@@ -115,7 +131,9 @@ const Dashboard = () => {
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-muted">Henüz faaliyet kaydınız bulunmamaktadır.</p>
+                  <p className="text-muted">
+                    Henüz faaliyet kaydınız bulunmamaktadır.
+                  </p>
                 )}
               </div>
             </div>
@@ -126,7 +144,10 @@ const Dashboard = () => {
             <div className="card h-100">
               <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">Açık İş İlanları</h5>
-                <Link to="/candidate/job-postings" className="btn btn-sm btn-outline-primary">
+                <Link
+                  to="/candidate/job-postings"
+                  className="btn btn-sm btn-outline-primary"
+                >
                   Tümünü Gör
                 </Link>
               </div>
@@ -136,19 +157,28 @@ const Dashboard = () => {
                     {jobPostings.map((job) => (
                       <li key={job._id} className="list-group-item">
                         <h6>{job.title}</h6>
-                        <p className="mb-1">{job.faculty} - {job.department}</p>
+                        <p className="mb-1">
+                          {job.faculty} - {job.department}
+                        </p>
                         <div className="d-flex justify-content-between">
                           <small>{job.position}</small>
-                          <small>Son: {formatDate(job.applicationDeadline)}</small>
+                          <small>
+                            Son: {formatDate(job.applicationDeadline)}
+                          </small>
                         </div>
-                        <Link to={`/candidate/job-postings/${job._id}`} className="btn btn-link p-0 mt-2">
+                        <Link
+                          to={`/candidate/job-postings/${job._id}`}
+                          className="btn btn-link p-0 mt-2"
+                        >
                           Detayları Gör
                         </Link>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-muted">Şu anda açık iş ilanı bulunmamaktadır.</p>
+                  <p className="text-muted">
+                    Şu anda açık iş ilanı bulunmamaktadır.
+                  </p>
                 )}
               </div>
             </div>
@@ -165,20 +195,26 @@ const Dashboard = () => {
                   <h6>Akademik Yükseltme Kriterleri Güncellendi</h6>
                   <small className="text-muted">15 Mayıs 2023</small>
                   <p>
-                    Üniversitemizin akademik yükseltme kriterleri güncellenmiştir. Yeni kriterleri incelemek için
-                    <Link to="/criteria"> Kriterler</Link> sayfasını ziyaret edebilirsiniz.
+                    Üniversitemizin akademik yükseltme kriterleri
+                    güncellenmiştir. Yeni kriterleri incelemek için
+                    <Link to="/criteria"> Kriterler</Link> sayfasını ziyaret
+                    edebilirsiniz.
                   </p>
                 </div>
                 <div>
                   <h6>Yeni Dönem Başvuruları Başladı</h6>
                   <small className="text-muted">1 Haziran 2023</small>
-                  <p>2023-2024 akademik yılı için akademik yükseltme başvuruları başlamıştır. Son başvuru tarihi: 30 Haziran 2023</p>
+                  <p>
+                    2023-2024 akademik yılı için akademik yükseltme başvuruları
+                    başlamıştır. Son başvuru tarihi: 30 Haziran 2023
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div> {/* container */}
+      </div>{" "}
+      {/* container */}
     </div>
   );
 };

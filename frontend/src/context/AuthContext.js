@@ -62,10 +62,10 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.message || "Registration failed");
       }
 
-      localStorage.setItem("token", data.token);
+      //)localStorage.setItem("token", data.token);
 
       // Get user data
-      const userResponse = await fetch(
+      /*const userResponse = await fetch(
         "http://localhost:5000/api/users/verify",
         {
           headers: {
@@ -81,7 +81,8 @@ export const AuthProvider = ({ children }) => {
         return userData;
       } else {
         throw new Error("Failed to get user data");
-      }
+      }*/
+     return await login(userData.tcNumber, userData.password)
     } catch (err) {
       setError(err.message);
       throw err;

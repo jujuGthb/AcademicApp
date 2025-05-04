@@ -80,13 +80,16 @@ function App() {
       } else {
         setIsAuthenticated(false);
       }
-      setIsLoading(false);
+
+      //setTimeout(() => {
+        setIsLoading(false);
+      //}, 1000);
     };
 
     if (isLoading) {
       load();
     }
-  }, [isLoading, user, isAuthenticated]);
+  }, [isLoading]); //, user, isAuthenticated]);
 
   return (
     <AuthProvider>
@@ -119,6 +122,7 @@ function App() {
               <ProtectedRoute
                 allowedRoles={["applicant"]}
                 isLoading={isLoading}
+                isAuthenticated={isAuthenticated}
               >
                 <CandidateLayout />
               </ProtectedRoute>
@@ -148,7 +152,11 @@ function App() {
           <Route
             path="admin"
             element={
-              <ProtectedRoute allowedRoles={["admin"]} isLoading={isLoading}>
+              <ProtectedRoute
+                allowedRoles={["admin"]}
+                isLoading={isLoading}
+                isAuthenticated={isAuthenticated}
+              >
                 <AdminLayout />
               </ProtectedRoute>
             }
@@ -175,7 +183,11 @@ function App() {
           <Route
             path="/manager"
             element={
-              <ProtectedRoute allowedRoles={["manager"]} isLoading={isLoading}>
+              <ProtectedRoute
+                allowedRoles={["manager"]}
+                isLoading={isLoading}
+                isAuthenticated={isAuthenticated}
+              >
                 <ManagerLayout />
               </ProtectedRoute>
             }
@@ -189,7 +201,11 @@ function App() {
           <Route
             path="/jury"
             element={
-              <ProtectedRoute allowedRoles={["jury"]} isLoading={isLoading}>
+              <ProtectedRoute
+                allowedRoles={["jury"]}
+                isLoading={isLoading}
+                isAuthenticated={isAuthenticated}
+              >
                 <JuryLayout />
               </ProtectedRoute>
             }

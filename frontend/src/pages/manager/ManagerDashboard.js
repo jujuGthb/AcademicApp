@@ -11,18 +11,19 @@ import { AuthContext } from "../../context/AuthContext";
 
 const ManagerDashboard = () => {
   const { user } = useContext(AuthContext);
-  const {
-    applications,
-    loading: applicationsLoading,
-    fetchAllApplications,
-  } = useApplication();
-  const { criteria, loading: criteriaLoading, fetchCriteria } = useCriteria();
 
+  //const { criteria, loading: criteriaLoading, fetchCriteria } = useCriteria();
+
+  const [loading, setLoading] = useState(false);
+  const [applicationsLoading, setApplicationsLoading] = useState(false);
+  const [criteriaLoading, setCriteriaLoading] = useState(false);
+  const [criteria, setCriteria] = useState([]);
+  const [applications, setApplications] = useState([]);
   const [juryMembers, setJuryMembers] = useState([]);
   const [juryLoading, setJuryLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
+  /*useEffect(() => {
     const loadDashboardData = async () => {
       try {
         await Promise.all([fetchAllApplications(), fetchCriteria()]);
@@ -40,7 +41,7 @@ const ManagerDashboard = () => {
     };
 
     //loadDashboardData();
-  }, [fetchAllApplications, fetchCriteria]);
+  }, [fetchAllApplications, fetchCriteria]);*/
 
   if (applicationsLoading || criteriaLoading || juryLoading) {
     return <div className="loading">Yükleniyor...</div>;

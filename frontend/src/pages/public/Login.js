@@ -33,7 +33,8 @@ const Login = () => {
     try {
       // Pass the email and password to the login function
       const success = await login(formData.tcNumber, formData.password);
-
+      console.log(success);
+      //return;
       if (success) {
         // Redirect based on selected role
         switch (success.user.role) {
@@ -46,7 +47,7 @@ const Login = () => {
           case "jury":
             navigate("/jury");
             break;
-          case "candidate":
+          case "applicant":
             navigate("/candidate");
           default:
             break;

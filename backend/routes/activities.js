@@ -13,6 +13,7 @@ const config = require("../config/config");
 // @desc    Get all activities for a user
 // @access  Private
 router.get("/", auth, async (req, res) => {
+  console.log("activities");
   try {
     const activities = await Activity.find({ user: req.user.id }).sort({
       date: -1,
@@ -315,6 +316,7 @@ router.get("/category/:category", auth, async (req, res) => {
 // @desc    Get activity statistics
 // @access  Private
 router.get("/stats/summary", auth, async (req, res) => {
+  console.log("activities/stats/summary");
   try {
     const user = await User.findById(req.user.id);
 

@@ -82,6 +82,8 @@ exports.createUser = async (req, res) => {
     fieldArea,
   } = req.body;
 
+  //console.log("ok");
+
   try {
     // Check if user exists
     let user = await User.findOne({ tcNumber });
@@ -102,6 +104,7 @@ exports.createUser = async (req, res) => {
     });
 
     await user.save();
+    //console.log(user);
 
     res.json(user);
   } catch (err) {
@@ -204,7 +207,7 @@ exports.login = async (req, res) => {
         if (err) throw err;
         res.json({
           token,
-          user: user
+          user: user,
         });
       }
     );
