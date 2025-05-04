@@ -2,7 +2,12 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 
 module.exports = (req, res, next) => {
-  const authHeader = req.header("Authorization");
+  let authHeader = req.header("Authorization") || req.header("x-auth-token");
+  console.log(req.header("x-auth-token"));
+  //console.log(req.header("Authorization"));
+  if (req.header("x-auth-token")) {
+    authHeader = "Bearer " + req.header("x-auth-token");
+  }
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "No token, authorization denied" });
