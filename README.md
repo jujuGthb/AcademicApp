@@ -251,7 +251,7 @@ Create a `.env` file in the `backend` directory with the following variables:
 ---
 
 ## 🏗️ Project Structure
-![Folder Structure](https://github.com/username/repo/blob/main/images/logo.png](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)
+![Folder Structure](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)
 
 
 ## 🗂 **Project Structure**  
