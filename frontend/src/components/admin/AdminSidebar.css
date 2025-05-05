@@ -1,35 +1,135 @@
+/* Admin Sidebar Styles */
+
 .admin-sidebar {
-  background-color: #212529;
-  color: #fff;
+  width: 250px;
+  height: 100vh;
+  background-color: #2d3748;
+  color: #e2e8f0;
+  position: fixed; /* Changed from sticky to fixed */
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  z-index: 100; /* Ensure sidebar is above other content but below modals */
 }
 
-.admin-sidebar .sidebar-header {
-  border-bottom-color: #343a40;
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #4a5568;
 }
 
-.admin-sidebar .sidebar-header h3 {
-  color: #17a2b8;
+.sidebar-header h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #f7fafc;
 }
 
-.admin-sidebar .user-name {
-  color: #fff;
+.user-info {
+  margin-top: 10px;
 }
 
-.admin-sidebar .user-role {
-  color: #6c757d;
-  font-size: 0.875rem;
+.user-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.admin-sidebar .sidebar-link {
-  color: #adb5bd;
+.user-role {
+  margin: 5px 0 0 0;
+  font-size: 12px;
+  color: #cbd5e0;
 }
 
-.admin-sidebar .sidebar-link:hover {
-  background-color: #343a40;
-  color: #fff;
+.sidebar-nav {
+  padding: 10px 0;
 }
 
-.admin-sidebar .sidebar-link.active {
-  background-color: #17a2b8;
-  color: #fff;
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #cbd5e0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #4a5568;
+  color: #f7fafc;
+}
+
+.sidebar-link.active {
+  background-color: #4a5568;
+  color: #f7fafc;
+  border-left: 3px solid #90cdf4;
+}
+
+.sidebar-icon {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.sidebar-section {
+  padding: 10px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #a0aec0;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-top: 15px;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #4a5568;
+  margin-top: auto;
+}
+
+.sidebar-footer-text {
+  font-size: 12px;
+  color: #a0aec0;
+  margin: 0;
+}
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background-color: #2d3748;
+  color: #f7fafc;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 0;
+    position: fixed;
+    z-index: 999;
+  }
+
+  .admin-sidebar.open {
+    width: 250px;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
 }

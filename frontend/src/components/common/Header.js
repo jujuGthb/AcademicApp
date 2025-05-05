@@ -52,11 +52,11 @@ const Header = () => {
 
             {isAuthenticated ? (
               <>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link to={getDashboardLink()} className="nav-link">
                     Dashboard
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <button onClick={handleLogout} className="nav-button">
                     Çıkış

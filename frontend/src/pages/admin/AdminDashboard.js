@@ -4,6 +4,8 @@ import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import CandidateSidebar from "../../components/admin/AdminSidebar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "../../components/common/Header";
 import "./AdminStyles.css";
 
 const AdminDashboard = () => {
@@ -81,77 +83,87 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="admin-container">
-      <h1 className="admin-title">Admin Paneli</h1>
-      <div className="admin-welcome">
-        <h2>Hoş Geldiniz, {user?.name || "Admin"}</h2>
-        <p>Bu panelden akademik başvuru sistemini yönetebilirsiniz.</p>
-      </div>
+    <div className="d-flex justify-content-between ">
+    
+        <CandidateSidebar />
+      
+      <div className="container ml-4 p-4 ">
+        <Header />
+        <div className="admin-container">
+          <h1 className="admin-title">Admin Paneli</h1>
 
-      {error && <div className="error-message">{error}</div>}
+          <div className="admin-welcome">
+            <h2>Hoş Geldiniz, {user?.name || "Admin"}</h2>
+            <p>Bu panelden akademik başvuru sistemini yönetebilirsiniz.</p>
+          </div>
 
-      <div className="admin-cards">
-        <div className="admin-card">
-          <h3>İlan Yönetimi</h3>
-          <p>Akademik iş ilanlarını oluşturun, düzenleyin ve yayınlayın.</p>
-          <Link to="/admin/job-postings" className="btn btn-primary">
-            İlanları Yönet
-          </Link>
-        </div>
+          {error && <div className="error-message">{error}</div>}
 
-        <div className="admin-card">
-          <h3>Başvuru Yönetimi</h3>
-          <p>
-            Adayların başvurularını görüntüleyin ve jüri üyelerine yönlendirin.
-          </p>
-          <Link to="/admin/applications" className="btn btn-primary">
-            Başvuruları Yönet
-          </Link>
-        </div>
-
-        <div className="admin-card">
-          <h3>Kullanıcı Yönetimi</h3>
-          <p>Adayları, jüri üyelerini ve yöneticileri yönetin.</p>
-          <Link to="/admin/users" className="btn btn-primary">
-            Kullanıcıları Yönet
-          </Link>
-        </div>
-
-        <div className="admin-card">
-          <h3>Değerlendirme Kriterleri</h3>
-          <p>
-            Akademik pozisyonlar için değerlendirme kriterlerini belirleyin.
-          </p>
-          <Link to="/admin/criteria" className="btn btn-primary">
-            Kriterleri Yönet
-          </Link>
-        </div>
-      </div>
-
-      <div className="admin-stats">
-        <h2>Sistem İstatistikleri</h2>
-        {loading ? (
-          <div className="loading">İstatistikler yükleniyor...</div>
-        ) : (
-          <div className="admin-stats-grid">
-            <div className="admin-stat-card">
-              <h3>Aktif İlanlar</h3>
-              <p className="stat-number">{stats.activeJobPostings}</p>
+          <div className="admin-cards">
+            <div className="admin-card">
+              <h3>İlan Yönetimi</h3>
+              <p>Akademik iş ilanlarını oluşturun, düzenleyin ve yayınlayın.</p>
+              <Link to="/admin/job-postings" className="btn btn-primary">
+                İlanları Yönet
+              </Link>
             </div>
-            <div className="admin-stat-card">
-              <h3>Bekleyen Başvurular</h3>
-              <p className="stat-number">{stats.pendingApplications}</p>
+
+            <div className="admin-card">
+              <h3>Başvuru Yönetimi</h3>
+              <p>
+                Adayların başvurularını görüntüleyin ve jüri üyelerine
+                yönlendirin.
+              </p>
+              <Link to="/admin/applications" className="btn btn-primary">
+                Başvuruları Yönet
+              </Link>
             </div>
-            <div className="admin-stat-card">
-              <h3>Kayıtlı Kullanıcılar</h3>
-              <p className="stat-number">{stats.registeredUsers}</p>
+
+            <div className="admin-card">
+              <h3>Kullanıcı Yönetimi</h3>
+              <p>Adayları, jüri üyelerini ve yöneticileri yönetin.</p>
+              <Link to="/admin/users" className="btn btn-primary">
+                Kullanıcıları Yönet
+              </Link>
             </div>
-            <div className="admin-stat-card">
-              <h3>Tamamlanan Değerlendirmeler</h3>
-              <p className="stat-number">{stats.completedReviews}</p>
+
+            <div className="admin-card">
+              <h3>Değerlendirme Kriterleri</h3>
+              <p>
+                Akademik pozisyonlar için değerlendirme kriterlerini belirleyin.
+              </p>
+              <Link to="/admin/criteria" className="btn btn-primary">
+                Kriterleri Yönet
+              </Link>
             </div>
           </div>
-        )}
+
+          <div className="admin-stats">
+            <h2>Sistem İstatistikleri</h2>
+            {loading ? (
+              <div className="loading">İstatistikler yükleniyor...</div>
+            ) : (
+              <div className="admin-stats-grid">
+                <div className="admin-stat-card">
+                  <h3>Aktif İlanlar</h3>
+                  <p className="stat-number">{stats.activeJobPostings}</p>
+                </div>
+                <div className="admin-stat-card">
+                  <h3>Bekleyen Başvurular</h3>
+                  <p className="stat-number">{stats.pendingApplications}</p>
+                </div>
+                <div className="admin-stat-card">
+                  <h3>Kayıtlı Kullanıcılar</h3>
+                  <p className="stat-number">{stats.registeredUsers}</p>
+                </div>
+                <div className="admin-stat-card">
+                  <h3>Tamamlanan Değerlendirmeler</h3>
+                  <p className="stat-number">{stats.completedReviews}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
