@@ -72,22 +72,6 @@ const Login = () => {
 
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="role">Kullanıcı Tipi</label>
-            <select
-              id="role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              className="form-control"
-            >
-              <option value="candidate">Aday / Başvuran</option>
-              <option value="admin">Yönetici</option>
-              <option value="manager">Yönetmen</option>
-              <option value="jury">Jüri Üyesi</option>
-            </select>
-          </div>
-
-          <div className="form-group">
             <label htmlFor="tcNumber">TC Kimlik Numarası</label>
             <input
               type="text"
@@ -138,3 +122,21 @@ const Login = () => {
 };
 
 export default Login;
+
+{
+  /* <div className="form-group">
+<label htmlFor="role">Kullanıcı Tipi</label>
+<select
+  id="role"
+  name="role"
+  value={formData.role}
+  onChange={handleChange}
+  className="form-control"
+>
+  <option value="candidate">Aday / Başvuran</option>
+  <option value="admin">Yönetici</option>
+  <option value="manager">Yönetmen</option>
+  <option value="jury">Jüri Üyesi</option>
+</select>
+</div> */
+}

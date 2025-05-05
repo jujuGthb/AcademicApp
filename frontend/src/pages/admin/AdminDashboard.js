@@ -3,6 +3,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import CandidateSidebar from "../../components/admin/AdminSidebar";
 import "./AdminStyles.css";
 
 const AdminDashboard = () => {

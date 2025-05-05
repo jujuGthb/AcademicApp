@@ -1,44 +1,46 @@
 .job-posting-detail {
-  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .job-posting-detail h1 {
-  margin-bottom: 2rem;
-  color: #343a40;
-  font-size: 2rem;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .job-posting-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.info-section,
-.description-section,
-.documents-section,
-.application-section {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-.info-section h2,
-.description-section h2,
-.documents-section h2,
-.application-section h2 {
-  margin-bottom: 1.5rem;
-  color: #343a40;
-  font-size: 1.5rem;
-  border-bottom: 1px solid #dee2e6;
-  padding-bottom: 0.75rem;
+.info-section {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.info-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.info-section h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
 }
 
 .info-item {
@@ -48,84 +50,141 @@
 
 .info-label {
   font-weight: 600;
-  color: #6c757d;
-  margin-bottom: 0.25rem;
+  color: #555;
+  margin-bottom: 5px;
 }
 
 .info-value {
-  color: #343a40;
+  color: #333;
 }
 
 .description-section p {
-  color: #495057;
+  color: #555;
   line-height: 1.6;
+}
+
+.documents-section {
+  margin-top: 20px;
 }
 
 .documents-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .documents-list li {
-  padding: 0.75rem;
-  border: 1px solid #dee2e6;
+  padding: 10px;
+  background-color: #f9f9f9;
   border-radius: 4px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 8px;
   position: relative;
 }
 
 .documents-list li.required {
-  border-left: 3px solid #dc3545;
+  border-left: 3px solid #dc2626;
 }
 
 .required-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  background-color: #dc3545;
-  color: white;
-  padding: 0.25rem 0.5rem;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 12px;
+  margin-left: 10px;
 }
 
 .document-description {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: #6c757d;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
 }
 
-.application-section p {
-  margin-bottom: 1rem;
-  color: #495057;
+.application-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
 }
 
-.application-section .note {
-  color: #6c757d;
+.note {
+  font-size: 14px;
+  color: #666;
   font-style: italic;
-  font-size: 0.875rem;
+  margin-bottom: 15px;
 }
 
 .action-buttons {
   display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 10px;
 }
 
 .success-message {
-  background-color: #d4edda;
-  color: #155724;
-  padding: 1rem;
+  background-color: #d1fae5;
+  color: #059669;
+  padding: 15px;
   border-radius: 4px;
-  border: 1px solid #c3e6cb;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #666;
+}
 
-  .action-buttons {
-    flex-direction: column;
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-primary:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb;
+}
+
+@media (min-width: 768px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

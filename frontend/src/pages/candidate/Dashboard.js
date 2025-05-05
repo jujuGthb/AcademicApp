@@ -6,6 +6,7 @@ import JobPostingService from "../../services/job-posting-service";
 import { formatDate } from "../../utils/formatters";
 import { AuthContext } from "../../context/AuthContext";
 import CandidateSidebar from "../../components/candidate/CandidateSidebar";
+import Header from "../../components/common/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 
@@ -51,7 +52,8 @@ const Dashboard = () => {
   return (
     <div className="d-flex">
       <CandidateSidebar />
-      <div className="container mt-4">
+      <div className="container ml-4 p-4">
+        <Header />
         <div className="mb-4">
           <h1>Hoş Geldiniz, {user?.name || "Kullanıcı"}</h1>
           <p>
