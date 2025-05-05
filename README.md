@@ -50,7 +50,7 @@ A comprehensive web application for managing academic job postings, applications
 #### Prerequisites
 - ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
 - ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white)
-- ![npm](https://img.shields.io/badge/-npm-CB3837?logo=npm&logoColor=white) or ![Yarn](https://img.shields.io/badge/-Yarn-2C8EBB?logo=yarn&logoColor=white)
+- ![npm](https://img.shields.io/badge/-npm-CB3837?logo=npm&logoColor=white) 
 
 #### 🛠️ Setup Instructions
 ##### 1. Clone the repository
