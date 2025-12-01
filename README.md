@@ -24,7 +24,7 @@ A comprehensive web application for managing academic job postings, applications
 *  Real-time notifications 
 *  Detailed reporting and statistics 
 
-### 🛠️Technology Stack
+### Technology Stack
 
 #### Frontend
    ![React](https://img.shields.io/badge/-React.js-61DAFB?logo=react&logoColor=white) - UI library  
@@ -84,9 +84,4 @@ npm start
 
 Create a `.env` file in the `backend` directory with the following variables:  
 
-
----
-
-## - **Project Structure**  
-![Folder Structure](https://github.com/jujuGthb/AcademicApp/blob/9f55de7fea2d893d75078093fed0f0d1531b53ba/folderStructure.png)
 
